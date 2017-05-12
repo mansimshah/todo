@@ -10,6 +10,7 @@ import { TodoService } from '../todo.service';
 export class TodosComponent implements OnInit {
   todos;	
 	text;
+	appState = 'default';
   constructor(private _todoService: TodoService) { }
 
   ngOnInit() {
@@ -35,4 +36,9 @@ export class TodosComponent implements OnInit {
 		this._todoService.deleteTodo(todoText);
 	}
 
+	editTodo(todo){
+		this.appState = 'edit';
+		console.log(this.appState);
+		this.text = todo.text;
+	}
 }
