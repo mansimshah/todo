@@ -1,13 +1,18 @@
-<h3>Add Todo</h3>
+<div *ngIf="appState == 'default'">
+	<h3>Add Todo</h3>
+	<form #f="ngForm" (submit)="addTodo()">
+		<input type="text" [(ngModel)]="text" name="text">
+		<span>{{ f.controls['text']?.value }}</span>
+	</form>
+</div>
 
-<!--<form (submit)="addTodo()">
-	<input type="text" [(ngModel)]="text">
-</form>-->
-
-<form #f="ngForm" (submit)="addTodo()">
-    <input type="text" [(ngModel)]="text" name="text">
-    <span>{{ f.controls['text']?.value }}</span>
-</form>
+<div *ngIf="appState == 'edit'">
+	<h3>Edit Todo</h3>
+	<form #f="ngForm" (submit)="updateTodo()">
+		<input type="text" [(ngModel)]="text" name="text">
+		<span>{{ f.controls['text']?.value }}</span>
+	</form>
+</div>
 
 <h3>Todo List</h3>
 <ul>
