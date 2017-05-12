@@ -18,9 +18,11 @@ export class TodosComponent implements OnInit {
 
 	addTodo(){
 		console.log(this.text);
-		this.todos.push({
+		var newTodo = {
 			text: this.text
-		})
+		}
+		this.todos.push(newTodo);
+		this._todoService.addTodo(newTodo);
 	}
 
 	deleteTodo(todoText){
@@ -29,6 +31,8 @@ export class TodosComponent implements OnInit {
 				this.todos.splice(i,1)
 			}
 		}
+		
+		this._todoService.deleteTodo(todoText);
 	}
 
 }
