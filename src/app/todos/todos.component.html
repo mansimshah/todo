@@ -1,7 +1,7 @@
 <div *ngIf="appState == 'default'">
 	<h3>Add Todo</h3>
 	<form #f="ngForm" (submit)="addTodo()">
-		<input type="text" [(ngModel)]="text" name="text">
+		<input class="form-control" type="text" [(ngModel)]="text" name="text">
 		<span>{{ f.controls['text']?.value }}</span>
 	</form>
 </div>
@@ -9,14 +9,14 @@
 <div *ngIf="appState == 'edit'">
 	<h3>Edit Todo</h3>
 	<form #f="ngForm" (submit)="updateTodo()">
-		<input type="text" [(ngModel)]="text" name="text">
+		<input class="form-control" type="text" [(ngModel)]="text" name="text">
 		<span>{{ f.controls['text']?.value }}</span>
 	</form>
 </div>
 
 <h3>Todo List</h3>
 <ul>
-	<li *ngFor = "let todo of todos" >
-		<span (click)="editTodo(todo)"> {{todo.text}} </span> <button (click)="deleteTodo(todo.text)">x</button>
+	<li *ngFor = "let todo of todos" class="well">
+		<span (click)="editTodo(todo)"> {{todo.text}} </span> <button class="btn btn-danger btn-sm" (click)="deleteTodo(todo.text)">x</button>
 	</li>
 </ul>
