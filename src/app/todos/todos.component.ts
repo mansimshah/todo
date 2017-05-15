@@ -12,6 +12,7 @@ export class TodosComponent implements OnInit {
 	text;
 	oldText;
 	appState = 'default';
+	todo = {"text": ""};
   constructor(private _todoService: TodoService) { }
 
   ngOnInit() {
@@ -19,12 +20,13 @@ export class TodosComponent implements OnInit {
   }
 
 	addTodo(){
-		console.log(this.text);
-		var newTodo = {
-			text: this.text
-		}
-		this.todos.push(newTodo);
-		this._todoService.addTodo(newTodo);
+		// var newTodo = {
+		// 	text: this.text
+		// }
+		this.todos.push(this.todo);
+		this._todoService.addTodo(this.todo);
+		console.log("this.todos" + this.todos);
+		this.todo = {"text": ""};
 	}
 
 	deleteTodo(todoText){
@@ -33,7 +35,6 @@ export class TodosComponent implements OnInit {
 				this.todos.splice(i,1)
 			}
 		}
-		
 		this._todoService.deleteTodo(todoText);
 	}
 
@@ -41,18 +42,19 @@ export class TodosComponent implements OnInit {
 		this.appState = 'edit';
 		console.log(this.appState);
 		this.oldText = todo.text;
+		this.todo = {"text": todo.text};
 		this.text = todo.text;
 	}
 
 	updateTodo(){
-		console.log(this.text);
+		console.log(this.todo.text);
 		for(var i=0;i < this.todos.length;i++){
 			if(this.todos[i].text == this.oldText){
-				this.todos[i].text = this.text;
+				this.todos[i].text = this.todo.text;
 			}
 		}
-
-		this._todoService.updateTodo(this.oldText,this.text);
+		this._todoService.updateTodo(this.oldText,this.todo.text);
+		this.todo = {"text": ""};
 	}
 
 }

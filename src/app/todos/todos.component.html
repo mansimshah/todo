@@ -1,7 +1,7 @@
 <div *ngIf="appState == 'default'">
 	<h3>Add Todo</h3>
-	<form #f="ngForm" (submit)="addTodo()">
-		<input class="form-control" type="text" [(ngModel)]="text" name="text">
+	<form #f="ngForm" (submit)="addTodo()" class="todoForm">
+		<input class="form-control" type="text" [(ngModel)]="todo.text" name="text">
 		<span>{{ f.controls['text']?.value }}</span>
 	</form>
 </div>
@@ -9,7 +9,7 @@
 <div *ngIf="appState == 'edit'">
 	<h3>Edit Todo</h3>
 	<form #f="ngForm" (submit)="updateTodo()">
-		<input class="form-control" type="text" [(ngModel)]="text" name="text">
+		<input class="form-control" type="text" [(ngModel)]="todo.text" name="text">
 		<span>{{ f.controls['text']?.value }}</span>
 	</form>
 </div>
